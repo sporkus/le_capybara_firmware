@@ -5,7 +5,7 @@
 //         0
 //   8 7   6   5 4
 
-#ifndef FRONT_LEDS_BYPASS
+  #ifndef FRONT_LEDS_BYPASS
     led_config_t g_led_config = {
         // Key Matrix to LED Index
         {
@@ -59,29 +59,23 @@
         {RGB_TEAL}
     };
 
-    void set_rgb_matrix_indicators(uint8_t led_min, uint8_t led_max) {
+    bool rgb_matrix_indicators_user(void) {
         #if defined(RGB_LAYER_INDICATOR_ENABLE)
         int layer = get_highest_layer(layer_state|default_layer_state);
-        RGB_MATRIX_INDICATOR_SET_COLOR(LED_CENTER_TOP, LAYER_R, LAYER_G, LAYER_B);
-        /* uprintf("layer RGB: (%u, %u, %u)\n", LAYER_R, LAYER_G, LAYER_B); */
+        rgb_matrix_set_color(LED_CENTER_TOP, LAYER_R, LAYER_G, LAYER_B);
         #else
-        RGB_MATRIX_INDICATOR_SET_COLOR(LED_CENTER_TOP, 0, 0, 0);
+        rgb_matrix_set_color(LED_CENTER_TOP, 0, 0, 0);
         #endif
 
         #if defined(RGB_MODS_INDICATOR_ENABLE)
-        RGB_MATRIX_INDICATOR_SET_COLOR(LED_CENTER_BOTTOM, MODS_R, MODS_G, MODS_B);
-        /* uprintf("mod RGB: (%u, %u, %u)\n", MODS_R, MODS_G, MODS_B); */
+        rgb_matrix_set_color(LED_CENTER_BOTTOM, MODS_R, MODS_G, MODS_B);
         #else
-        RGB_MATRIX_INDICATOR_SET_COLOR(LED_CENTER_BOTTOM, 0, 0, 0);
+        rgb_matrix_set_color(LED_CENTER_BOTTOM, 0, 0, 0);
         #endif
+        return true;
     }
 
-    bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-        set_rgb_matrix_indicators(led_min, led_max);
-        return false;
-    }
-
-#else 
+  #else 
     led_config_t g_led_config = {
         // Key Matrix to LED Index
         {
@@ -106,6 +100,6 @@
         //  https://docs.qmk.fm/#/feature_rgb_matrix?id=flags
         { 2, 2, 2, 2, 2, 2, 2, 2, 2 }
     };
-#endif
+  #endif
 
 #endif
