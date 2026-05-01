@@ -56,7 +56,7 @@ Usage is the same for both versions:
   - Phase 2: Tunes bottom out value by pressing each key
 - Saves calibration result
 
-![calibration_tool](./calibration_tool.png)
+![calibration_tool](./calibration_tool.gif)
 
 ## More configuration in `config.h`:
 The capacitance response isn't linear - a default gamma curve is applied to 
