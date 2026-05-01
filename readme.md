@@ -47,7 +47,7 @@ These keycodes can be used in your qmk keymap or selected in vial > user keycode
 
 ### Calibration Tool
 For more accurate calibration, use the calibration tool in `tools/ec_calibration_tool.html`.
-- [ Web (download and run in chrome) ](tools/ec_calibration/ec_calibration.html)
+- [ Web (download and run in chrome) ](tools/ec_calibration.html)
 
 Usage is the same for both versions:
 - Start the tool
