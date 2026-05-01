@@ -37,13 +37,15 @@
     #define LED_CENTER_TOP 1
     #define LED_CENTER_BOTTOM 0
 
-    #define LAYER_R layer_colors[layer][0] *  RGB_INDICATOR_BRIGHTNESS / 255
-    #define LAYER_G layer_colors[layer][1] *  RGB_INDICATOR_BRIGHTNESS / 255
-    #define LAYER_B layer_colors[layer][2] *  RGB_INDICATOR_BRIGHTNESS / 255
+    #define _FRONT_VAL ((uint8_t)((uint16_t)rgb_matrix_get_val() * RGB_FRONT_BRIGHTNESS_SCALE / 10))
+
+    #define LAYER_R layer_colors[layer][0] * _FRONT_VAL / 255
+    #define LAYER_G layer_colors[layer][1] * _FRONT_VAL / 255
+    #define LAYER_B layer_colors[layer][2] * _FRONT_VAL / 255
 
     #define MODS_ACTIVE(mods) \
-        ((get_mods()|get_oneshot_mods()) & MOD_MASK_##mods ? RGB_INDICATOR_BRIGHTNESS:0)
-    #define SHIFT_ACTIVE (get_mods() & MOD_MASK_SHIFT ? RGB_INDICATOR_BRIGHTNESS/4:0)
+        ((get_mods()|get_oneshot_mods()) & MOD_MASK_##mods ? _FRONT_VAL:0)
+    #define SHIFT_ACTIVE (get_mods() & MOD_MASK_SHIFT ? _FRONT_VAL/4:0)
     #define MODS_R MODS_ACTIVE(CTRL) + SHIFT_ACTIVE
     #define MODS_G MODS_ACTIVE(GUI) + SHIFT_ACTIVE
     #define MODS_B MODS_ACTIVE(ALT) + SHIFT_ACTIVE
